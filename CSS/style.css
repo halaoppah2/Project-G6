@@ -1,9 +1,10 @@
-.profiles {
+/* .profiles {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px;
-}
+    margin-bottom: 130px;
+} */
 /* Add Font Awesome for icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
@@ -50,12 +51,12 @@ nav a i {
 }
 
 /* Profile Section Modifications */
-.profiles {
+/* .profiles{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px;
     padding: 40px;
-}
+} */
 
 .member {
     padding: 20px;
@@ -95,18 +96,18 @@ nav a i {
     margin: 30px 0;
 }
 
-#scroller marquee {
-    font-weight: 700; /* Bolder text */
-    color: #7ed6df; /* Matching accent color */
+/* #scroller marquee {
+    font-weight: 700; 
+    color: #7ed6df; 
     font-size: 1.3em;
     letter-spacing: 1.2px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
+} */
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .profiles {
-        grid-template-columns: 1fr;
+    .grid_img {
+        grid-template-columns: repeat(2, 1fr);
         padding: 20px;
     }
     
@@ -162,12 +163,12 @@ nav a i {
     margin: 20px 0;
 }
 
-#scroller marquee {
+/* #scroller marquee {
     font-weight: 600;
     color: #ecf0f1;
     font-size: 1.2em;
     letter-spacing: 1px;
-}
+} */
 .member {
     border: 1px solid #ccc;
     padding: 15px;

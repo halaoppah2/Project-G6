@@ -6,7 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | TechSolutions Inc.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+</head>
+<body>
+    <nav>
+        <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        <div>
+            <a href="register.php">Register</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <h1 class="auth-heading">Login to Dashboard</h1>
+        
+        <div id="response" class="response"></div>
+
+        <form action="log.php" id="loginForm" method="POST">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username or Email" required>
+            </div>
+            
+            <div class="form-group password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
+
+            <input type="submit" class="btn login-btn" value="Login" href="info_sys.php">
+        </form>
+
+        <div class="links">
+            <a href="#forgot-password" onclick="showForgotPassword()">Forgot Password?</a>
+        </div>
+
+        <button class="btn register-btn" onclick="window.location.href='register.php'">
+            Create New Account
+        </button>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPassword" class="auth-container hidden">
+
+        <h1 class="auth-heading">Reset Password</h1>
+
+        <form action="reset.php" id="forgotForm" method="POST">
+
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Registered Email" required>
+            </div>
+
+            <button type="submit" class="btn login-btn">Reset Password</button>
+
+            <button type="button" class="btn register-btn" onclick="hideForgotPassword()">Cancel</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+<style>
         /* Base Styles */
         body {
             background-color: #1a1a1a;
@@ -136,55 +193,9 @@
             background: #2ecc71;
         }
     </style>
-</head>
-<body>
-    <nav>
-        <a href="index.php"><i class="fas fa-home"></i> Home</a>
-        <div>
-            <a href="register.php">Register</a>
-        </div>
-    </nav>
 
-    <div class="auth-container">
-        <h1 class="auth-heading">Login to Dashboard</h1>
-        
-        <div id="response" class="response"></div>
-
-        <form id="loginForm" method="POST">
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Username" required>
-            </div>
-            
-            <div class="form-group password-container">
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
-            </div>
-
-            <button type="submit" class="btn login-btn">Login</button>
-        </form>
-
-        <div class="links">
-            <a href="#forgot-password" onclick="showForgotPassword()">Forgot Password?</a>
-        </div>
-
-        <button class="btn register-btn" onclick="window.location.href='register.html'">
-            Create New Account
-        </button>
-    </div>
-
-    <!-- Forgot Password Modal -->
-    <div id="forgotPassword" class="auth-container hidden">
-        <h1 class="auth-heading">Reset Password</h1>
-        <form id="forgotForm" method="POST">
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Registered Email" required>
-            </div>
-            <button type="submit" class="btn login-btn">Reset Password</button>
-            <button type="button" class="btn register-btn" onclick="hideForgotPassword()">Cancel</button>
-        </form>
-    </div>
-
-    <script>
+    <!-- scripting -->
+<script>
         function togglePassword() {
             const password = document.getElementById('password');
             const icon = document.querySelector('.toggle-password');
@@ -202,49 +213,6 @@
             document.getElementById('forgotPassword').classList.remove('hidden');
         }
 
-        function hideForgotPassword() {
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('forgotPassword').classList.add('hidden');
-        }
-
-        // Handle form submissions
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            const response = await fetch('login_handler.php', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const result = await response.json();
-            showResponse(result);
-        });
-
-        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            const response = await fetch('password_reset.php', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const result = await response.json();
-            showResponse(result);
-        });
-
-        function showResponse(result) {
-            const responseDiv = document.getElementById('response');
-            responseDiv.className = `response ${result.status}`;
-            responseDiv.textContent = result.message;
-            
-            if (result.status === 'success') {
-                if (result.redirect) {
-                    window.location.href = result.redirect;
-                }
-            }
-        }
     </script>
-</body>
+
 </html>

@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | TechSolutions Inc.</title>
+    <title>Register | WinnieSolution</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+    
+</head>
+<body>
+    <nav>
+        <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        <div>
+            <a href="login.php">Login</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <h1 class="auth-heading">Create New Account</h1>
+        
+        <div id="response" class="response"></div>
+
+        <form action="register_form.php" id="registerForm" method="POST">
+
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            
+            <div class="form-group password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
+
+            <div class="form-group password-container">
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+                <i class="fas fa-eye toggle-password" onclick="toggleConfirmPassword()"></i>
+            </div>
+
+            <input type="submit" class="btn register-btn" value="Register">
+        </form>
+
+        <div class="links">
+            Already have an account? <a href="login.php">Login here</a>
+        </div>
+    </div>
+
+</body>
+
+<!-- styling -->
+
+<style>
         /* Reuse existing styles */
         body {
             background-color: #1a1a1a;
@@ -124,51 +171,11 @@
             background: #2ecc71;
         }
     </style>
-</head>
-<body>
-    <nav>
-        <a href="index.php"><i class="fas fa-home"></i> Home</a>
-        <div>
-            <a href="login.php">Login</a>
-        </div>
-    </nav>
-
-    <div class="auth-container">
-        <h1 class="auth-heading">Create New Account</h1>
-        
-        <div id="response" class="response"></div>
-
-        <form id="registerForm" method="POST">
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Username" required>
-            </div>
-            
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Email Address" required>
-            </div>
-            
-            <div class="form-group password-container">
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
-            </div>
-
-            <div class="form-group password-container">
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-                <i class="fas fa-eye toggle-password" onclick="toggleConfirmPassword()"></i>
-            </div>
-
-            <button type="submit" class="btn register-btn">Register</button>
-        </form>
-
-        <div class="links">
-            Already have an account? <a href="login.html">Login here</a>
-        </div>
-    </div>
 
     <script>
-        function togglePassword() {
+         function togglePassword() {
             const password = document.getElementById('password');
-            const icon = document.querySelector('#password + .toggle-password');
+            const icon = document.querySelector('.toggle-password');
             if (password.type === 'password') {
                 password.type = 'text';
                 icon.classList.replace('fa-eye', 'fa-eye-slash');
@@ -179,52 +186,24 @@
         }
 
         function toggleConfirmPassword() {
-            const confirmPassword = document.getElementById('confirm_password');
-            const icon = document.querySelector('#confirm_password + .toggle-password');
-            if (confirmPassword.type === 'password') {
-                confirmPassword.type = 'text';
+            const password = document.getElementById('confirm_password');
+            const icon = document.querySelector('.toggle-password');
+            if (password.type === 'password') {
+                password.type = 'text';
                 icon.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
-                confirmPassword.type = 'password';
+                password.type = 'password';
                 icon.classList.replace('fa-eye-slash', 'fa-eye');
             }
         }
 
-        // Handle form submission
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const password = formData.get('password');
-            const confirmPassword = formData.get('confirm_password');
-
-            if (password !== confirmPassword) {
-                showResponse({ status: 'error', message: 'Passwords do not match!' });
-                return;
-            }
-
-            const response = await fetch('register_handler.php', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const result = await response.json();
-            showResponse(result);
-        });
-
-        function showResponse(result) {
-            const responseDiv = document.getElementById('response');
-            responseDiv.className = `response ${result.status}`;
-            responseDiv.textContent = result.message;
-            
-            if (result.status === 'success') {
-                if (result.redirect) {
-                    setTimeout(() => {
-                        window.location.href = result.redirect;
-                    }, 2000);
-                }
-            }
+        function showForgotPassword() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('forgotPassword').classList.remove('hidden');
         }
+        
+
     </script>
-</body>
+
+
 </html>
