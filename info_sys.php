@@ -176,8 +176,15 @@ echo "Database is selected</br>";
 <button><a href="login.php" style="text-decoration: none;">Logout</a></button>
 
 <!-- insert record -->
-<button><a href="update.php" style="text-decoration: none;">Update Record</a></button>
+<button><a href="insert_form.php" style="text-decoration: none;">Insert Record</a></button>
 
+<!-- update record -->
+<button><a href="update_form.php" style="text-decoration: none;">Update Record</a></button>
+
+ <!-- deleting records -->
+
+ <button><a href="delete_form.php" style="text-decoration: none;">Delete Record</a></button>
+ 
 <!-- retrieve record -->
 <button><a href="retrieve_form.php" style="text-decoration: none;">Retrieve Record</a></button>
 

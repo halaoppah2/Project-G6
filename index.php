@@ -11,8 +11,8 @@
 <div class="main-content">
 
 <div class="sidebar">
-        <!-- <a href="update.php"><i class="fas fa-plus-circle"></i> Insert Record</a> -->
-        <a href="update.php"><i class="fas fa-edit"></i> Update Record</a>
+        <a href="insert_form.php"><i class="fas fa-plus-circle"></i> Insert Record</a>
+        <a href="update_form.php"><i class="fas fa-edit"></i> Update Record</a>
         <a href="retrieve_form.php"><i class="fas fa-search"></i> Retrieve Record</a>
         <a href="delete_form.php"><i class="fas fa-trash-alt"></i> Delete Record</a>
     </div>
@@ -274,7 +274,7 @@
 
     // scroling text
     const scrollingText = document.getElementById('scrollingText');
-            const text = 'Welcome to our group page! Meet our team and explore our projects.';
+            const text = 'Welcome to our group page! Meet our team and explore our services.';
             let index = 0;
 
             function scrollText() {
